@@ -8,10 +8,24 @@
     <Description>Takes a string and either encode or decode it using CryptoStream. Pass Phrase and Salt needs to be passed.</Description>
     <Copyright>krypto IT</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://kryptoit.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Krypto-IT/EncryptLibrary/</RepositoryUrl>
+    <PackageTags>encrypt, decrypt, encode, decode, 256, RijndaelManaged, Rfc2898DeriveBytes,Encoding.UTF8</PackageTags>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageIcon>Lock.png</PackageIcon>
+    <PackageIconUrl />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Users\William\OneDrive - Krypto IT\KryptoIT\Logos\Lock.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
