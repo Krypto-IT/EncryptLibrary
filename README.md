@@ -1,2 +1,2 @@
 # EncryptLibrary
- ENcodes and decodes a string
+ Encodes and decodes a string
