@@ -1,5 +1,5 @@
 # EncryptLibrary
- ##Encodes and decodes a string
+ Encodes and decodes a string
 
 using EncryptLibrary;
 ## Using Default Init Vector
