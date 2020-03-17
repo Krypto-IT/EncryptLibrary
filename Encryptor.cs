@@ -8,15 +8,23 @@ namespace EncryptLibrary
 {
     public class Encryptor
     {
-        private string _initVector = "@1B2c3D4e5F6g7H8";
+        private string _initVector;
         private string _passPhrase;
         private int _passwordIterations = 2;
         private int _keySize = 256;
         private string _salt;
+        private string defaultInitVector = "@1B2c3D4e5F6g7H8";
         public Encryptor(string passPhrase, string salt)
         {
             _passPhrase = passPhrase;
             _salt = salt;
+            _initVector = defaultInitVector;
+        }
+        public Encryptor(string passPhrase, string salt, string initVector16Chars)
+        {
+            _passPhrase = passPhrase;
+            _salt = salt;
+            _initVector = initVector16Chars.Length==16 ? initVector16Chars: defaultInitVector;
         }
         private string Encode(string plainText, string saltValue)
         {
