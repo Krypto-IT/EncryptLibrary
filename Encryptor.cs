@@ -16,18 +16,27 @@ namespace EncryptLibrary
         private string defaultInitVector = "@1B2c3D4e5F6g7H8";
         public Encryptor(string passPhrase, string salt)
         {
-            _passPhrase = passPhrase;
-            _salt = salt;
-            _initVector = defaultInitVector;
+            PrepareVariables(passPhrase, salt, defaultInitVector);
         }
         public Encryptor(string passPhrase, string salt, string initVector16Chars)
         {
+            PrepareVariables(passPhrase, salt, initVector16Chars);
+        }
+        private void PrepareVariables(string passPhrase, string salt, string initVector16Chars)
+        {
+            if (passPhrase.Length < 8)
+                throw new FieldAccessException("passPhrase needs to be at least 8 characters");
+            if (salt.Length < 8)
+                throw new FieldAccessException("Salt needs to be at least 8 characters");
+            if (initVector16Chars.Length != 16)
+                throw new FieldAccessException("initVector must be 16 characters, to use default value do not include this");
             _passPhrase = passPhrase;
             _salt = salt;
-            _initVector = initVector16Chars.Length==16 ? initVector16Chars: defaultInitVector;
+            _initVector = initVector16Chars;
         }
         private string Encode(string plainText, string saltValue)
         {
+
             var initVectorBytes = Encoding.ASCII.GetBytes(_initVector);
             var saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
