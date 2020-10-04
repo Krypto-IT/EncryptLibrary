@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>William Mendoza</Authors>
     <Company>Krypto IT</Company>
     <PackageId>String.Encoder.Decoder</PackageId>
-    <Description>Takes a string and either encode or decode it using CryptoStream. Pass Phrase and Salt needs to be passed.</Description>
+    <Description>Takes a string and either encode or decode it using CryptoStream. "Pass Phrase" and "Salt" needs to be passed in.</Description>
     <Copyright>krypto IT</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://kryptoit.com/</PackageProjectUrl>
@@ -15,10 +15,10 @@
     <PackageIcon>Lock.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.1</Version>
-    <PackageReleaseNotes>Added Exceptions</PackageReleaseNotes>
-    <AssemblyVersion>1.2.2.0</AssemblyVersion>
-    <FileVersion>1.2.2.0</FileVersion>
+    <Version>2.0.0</Version>
+    <PackageReleaseNotes>Added testing</PackageReleaseNotes>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
