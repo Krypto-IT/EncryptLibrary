@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Authors>William Mendoza</Authors>
     <Company>Krypto IT</Company>
     <PackageId>String.Encoder.Decoder</PackageId>

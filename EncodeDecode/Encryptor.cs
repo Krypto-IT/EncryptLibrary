@@ -41,24 +41,29 @@ namespace EncryptLibrary
             var saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
+            // Generate the key using Rfc2898DeriveBytes
             var password = new Rfc2898DeriveBytes(_passPhrase, saltValueBytes, _passwordIterations);
             var intKeySize = (_keySize / 8);
             var keyBytes = password.GetBytes(intKeySize);
 
-            var symetricKey = new RijndaelManaged();
-            symetricKey.Mode = CipherMode.CBC;
+            // Create AES instance
+            using (var aesAlg = Aes.Create())
+            {
+                aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Key = keyBytes;
+                aesAlg.IV = initVectorBytes; // Initialization vector
 
-            var encryptor = symetricKey.CreateEncryptor(keyBytes, initVectorBytes);
-            var memoryStream = new MemoryStream();
+                using (var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
+                using (var memoryStream = new MemoryStream())
+                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                    cryptoStream.FlushFinalBlock();
 
-            var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write);
-            cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
-            cryptoStream.FlushFinalBlock();
-            var cipherTextBytes = memoryStream.ToArray();
-            memoryStream.Close();
-            cryptoStream.Close();
-
-            return Convert.ToBase64String(cipherTextBytes);
+                    var cipherTextBytes = memoryStream.ToArray();
+                    return Convert.ToBase64String(cipherTextBytes);
+                }
+            }
         }
         private string Decode(string cipherText, string saltValue)
         {
@@ -66,25 +71,31 @@ namespace EncryptLibrary
             var saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
             var cipherTextBytes = Convert.FromBase64String(cipherText);
 
+            // Generate the key using Rfc2898DeriveBytes
             var password = new Rfc2898DeriveBytes(_passPhrase, saltValueBytes, _passwordIterations);
             var intKeySize = (_keySize / 8);
             var keyBytes = password.GetBytes(intKeySize);
 
-            var symetricKey = new RijndaelManaged();
-            symetricKey.Mode = CipherMode.CBC;
+            // Create AES instance
+            using (var aesAlg = Aes.Create())
+            {
+                aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Key = keyBytes;
+                aesAlg.IV = initVectorBytes; // Initialization vector
 
-            var decryptor = symetricKey.CreateDecryptor(keyBytes, initVectorBytes);
-            var memoryStream = new MemoryStream(cipherTextBytes);
+                using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
+                using (var memoryStream = new MemoryStream(cipherTextBytes))
+                using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                using (var resultStream = new MemoryStream())
+                {
+                    cryptoStream.CopyTo(resultStream);
+                    var plainTextBytes = resultStream.ToArray();
 
-            var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
-            var plainTextBytes = new byte[cipherTextBytes.Length];
-
-            var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-            memoryStream.Close();
-            cryptoStream.Close();
-
-            return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                    return Encoding.UTF8.GetString(plainTextBytes);
+                }
+            }
         }
+
         public string Encrypt(string plainText)
         {
             var textToEncrypt= Encode(plainText, _salt);
@@ -92,7 +103,7 @@ namespace EncryptLibrary
         }
         public string Decrypt(string cipherText)
         {
-            if (cipherText.Length > 12 && cipherText.Left(12) == @"--KryptoIt--")
+            if (cipherText.Length > 12 && cipherText.StartsWith("--KryptoIt--"))
             {
                 cipherText = cipherText.Remove(0, 12);
                 return Decode(cipherText, _salt);
