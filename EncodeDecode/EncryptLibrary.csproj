@@ -15,10 +15,11 @@
     <PackageIcon>Lock.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>8.0.0</Version>
+    <Version>8.0.1</Version>
     <PackageReleaseNotes>Upgraded to Net 8</PackageReleaseNotes>
-    <AssemblyVersion>8.0.0.0</AssemblyVersion>
-    <FileVersion>8.0.0.0</FileVersion>
+    <AssemblyVersion>8.0.0.1</AssemblyVersion>
+    <FileVersion>8.0.0.1</FileVersion>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
