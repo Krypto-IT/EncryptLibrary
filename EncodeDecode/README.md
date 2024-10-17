@@ -31,8 +31,13 @@ In your app settings add the configuration settings:
 ```
 Register the service in your program.cs file
 ```csharp
+<<<<<<< Updated upstream
     services.Configure<EncryptorConfiguration>(context.Configuration.GetSection(EncryptorConfiguration.Name));
     services.AddScoped<IEncryptor, Encryptor>();
+=======
+    services.Configure<EncodeDecodeConfiguration>(context.Configuration.GetSection(EncodeDecodeConfiguration.Name));
+    services.AddScoped<IEncodeDecode, EncodeDecode>();
+>>>>>>> Stashed changes
 ```
 Inject the service where you need it:
 ```csharp

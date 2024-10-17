@@ -1,4 +1,4 @@
-# EncryptLibrary
+# EncodeDecode Library
  Encodes and decodes a string
 ```
 using EncryptLibrary;
