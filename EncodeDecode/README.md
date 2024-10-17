@@ -28,12 +28,12 @@ In your app settings add the configuration settings:
     "InitVector": "@1B2c3D4e5F6g7H8",
     "Passphrase": "DoNotUseForPasswords"
   }
-
+```
 Register the service
 ```csharp
     services.Configure<EncryptorConfiguration>(context.Configuration.GetSection(EncryptorConfiguration.Name));
     services.AddScoped<IEncryptor, Encryptor>();
-
+```
 Inject the service where you need it:
 ```csharp
      private readonly IEncryptor _encryptor;
@@ -51,7 +51,7 @@ Inject the service where you need it:
             Console.WriteLine("****************");
             Console.WriteLine(decrypted);
         }
-
+```
 ### 2. Initialize the Encryptor
 
 You can initialize the `Encryptor` class with the following parameters:
