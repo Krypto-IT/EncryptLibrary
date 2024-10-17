@@ -18,7 +18,41 @@ The `Encryptor` class provides encryption and decryption functionality using AES
 
 ## How to Use
 
-### 1. Initialize the Encryptor
+### 1. Using Dependency Injection
+
+In your app settings add the configuration settings:
+```json
+ "EncryptorConfiguration": {
+    "PasswordIterations": 2,
+    "Salt": "ThisIsYourSalt",
+    "InitVector": "@1B2c3D4e5F6g7H8",
+    "Passphrase": "DoNotUseForPasswords"
+  }
+
+Register the service
+```csharp
+    services.Configure<EncryptorConfiguration>(context.Configuration.GetSection(EncryptorConfiguration.Name));
+    services.AddScoped<IEncryptor, Encryptor>();
+
+Inject the service where you need it:
+```csharp
+     private readonly IEncryptor _encryptor;
+      public YourClassConstructor(IEncryptor encrypt)
+        {
+            _encryptor = encrypt;
+        }
+        public void test()
+        {
+            Console.WriteLine("Enter Text");
+            var text = Console.ReadLine();
+            var encrypted = _encryptor.Encrypt(text);
+            var decrypted =_encryptor.Decrypt(encrypted);
+            Console.WriteLine(encrypted);
+            Console.WriteLine("****************");
+            Console.WriteLine(decrypted);
+        }
+
+### 2. Initialize the Encryptor
 
 You can initialize the `Encryptor` class with the following parameters:
 
@@ -28,3 +62,4 @@ string salt = "YourSaltValue";        // At least 8 characters
 string initVector = "@1B2c3D4e5F6g7H8"; // Must be exactly 16 characters
 
 Encryptor encryptor = new Encryptor(passPhrase, salt, initVector);
+

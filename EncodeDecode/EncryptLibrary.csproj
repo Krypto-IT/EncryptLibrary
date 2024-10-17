@@ -10,19 +10,23 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://kryptoit.com/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Krypto-IT/EncryptLibrary/</RepositoryUrl>
-    <PackageTags>encrypt, decrypt, encode, decode, 256, RijndaelManaged, Rfc2898DeriveBytes,Encoding.UTF8</PackageTags>
+    <PackageTags>encrypt, decrypt, encode, decode, 256, Rfc2898DeriveBytes, Encoding.UTF8</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageIcon>Lock.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>8.0.1</Version>
-    <PackageReleaseNotes>Upgraded to Net 8</PackageReleaseNotes>
+    <PackageReleaseNotes>Upgraded to Net 8
+Added Dependency Injection</PackageReleaseNotes>
     <AssemblyVersion>8.0.0.1</AssemblyVersion>
     <FileVersion>8.0.0.1</FileVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Title>Encryptor-Decryptor</Title>
+		<RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
     <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
   </ItemGroup>
 
@@ -30,6 +34,13 @@
     <None Include="Lock.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

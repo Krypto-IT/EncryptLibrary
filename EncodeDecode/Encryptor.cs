@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
+using Microsoft.Extensions.Options;
 
 namespace EncryptLibrary
 {
-    public class Encryptor
+    public class Encryptor:IEncryptor
     {
         private string _initVector;
         private string _passPhrase;
@@ -14,6 +15,7 @@ namespace EncryptLibrary
         private int _keySize = 256;
         private string _salt;
         private string defaultInitVector = "@1B2c3D4e5F6g7H8";
+        private readonly EncryptorConfiguration _config;
         public Encryptor(string passPhrase, string salt)
         {
             PrepareVariables(passPhrase, salt, defaultInitVector);
@@ -21,6 +23,11 @@ namespace EncryptLibrary
         public Encryptor(string passPhrase, string salt, string initVector16Chars)
         {
             PrepareVariables(passPhrase, salt, initVector16Chars);
+        }
+        public Encryptor(IOptions<EncryptorConfiguration> config)
+        {
+            _config = config.Value;
+            PrepareVariables(_config.Passphrase, _config.Salt, _config.InitVector);
         }
         private void PrepareVariables(string passPhrase, string salt, string initVector16Chars)
         {
