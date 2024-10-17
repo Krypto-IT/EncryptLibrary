@@ -1,6 +1,6 @@
 ﻿# EncodeDecode Class
 
-The `Encryptor` class provides encryption and decryption functionality using AES (Advanced Encryption Standard) with a customizable initialization vector and passphrase. It is designed to securely encode and decode data using a salted encryption approach.
+The `EncodeDecode` class provides encryption and decryption functionality using AES (Advanced Encryption Standard) with a customizable initialization vector and passphrase. It is designed to securely encode and decode data using a salted encryption approach.
 
 ## Features
 
