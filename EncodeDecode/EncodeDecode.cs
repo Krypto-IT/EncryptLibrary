@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace EncryptLibrary
 {
-    public class Encryptor:IEncryptor
+    public class EncodeDecode : IEncodeDecode
     {
         private string _initVector;
         private string _passPhrase;
@@ -15,16 +15,16 @@ namespace EncryptLibrary
         private int _keySize = 256;
         private string _salt;
         private string defaultInitVector = "@1B2c3D4e5F6g7H8";
-        private readonly EncryptorConfiguration _config;
-        public Encryptor(string passPhrase, string salt)
+        private readonly EncodeDecodeConfiguration _config;
+        public EncodeDecode(string passPhrase, string salt)
         {
             PrepareVariables(passPhrase, salt, defaultInitVector);
         }
-        public Encryptor(string passPhrase, string salt, string initVector16Chars)
+        public EncodeDecode(string passPhrase, string salt, string initVector16Chars)
         {
             PrepareVariables(passPhrase, salt, initVector16Chars);
         }
-        public Encryptor(IOptions<EncryptorConfiguration> config)
+        public EncodeDecode(IOptions<EncodeDecodeConfiguration> config)
         {
             _config = config.Value;
             PrepareVariables(_config.Passphrase, _config.Salt, _config.InitVector);

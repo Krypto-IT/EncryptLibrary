@@ -1,4 +1,4 @@
-﻿# Encryptor Class
+﻿# EncodeDecode Class
 
 The `Encryptor` class provides encryption and decryption functionality using AES (Advanced Encryption Standard) with a customizable initialization vector and passphrase. It is designed to securely encode and decode data using a salted encryption approach.
 
@@ -22,7 +22,7 @@ The `Encryptor` class provides encryption and decryption functionality using AES
 
 In your app settings add the configuration settings:
 ```json
- "EncryptorConfiguration": {
+ "EncodeDecodeConfiguration": {
     "PasswordIterations": 2,
     "Salt": "ThisIsYourSalt",
     "InitVector": "@1B2c3D4e5F6g7H8",
@@ -31,18 +31,15 @@ In your app settings add the configuration settings:
 ```
 Register the service in your program.cs file
 ```csharp
-<<<<<<< Updated upstream
-    services.Configure<EncryptorConfiguration>(context.Configuration.GetSection(EncryptorConfiguration.Name));
-    services.AddScoped<IEncryptor, Encryptor>();
-=======
+
     services.Configure<EncodeDecodeConfiguration>(context.Configuration.GetSection(EncodeDecodeConfiguration.Name));
     services.AddScoped<IEncodeDecode, EncodeDecode>();
->>>>>>> Stashed changes
+
 ```
 Inject the service where you need it:
 ```csharp
-     private readonly IEncryptor _encryptor;
-      public YourClassConstructor(IEncryptor encrypt)
+     private readonly IEncodeDecode _encryptor;
+      public YourClassConstructor(IEncodeDecode encrypt)
         {
             _encryptor = encrypt;
         }
@@ -57,14 +54,14 @@ Inject the service where you need it:
             Console.WriteLine(decrypted);
         }
 ```
-### 2. Without Dependency Injection You May Initialize the Encryptor
+### 2. Without Dependency Injection You May Initialize the EncodeDecode
 
-You can initialize the `Encryptor` class with the following parameters:
+You can initialize the `EncodeDecode` class with the following parameters:
 
 ```csharp
 string passPhrase = "YourPassphrase"; // At least 8 characters
 string salt = "YourSaltValue";        // At least 8 characters
 string initVector = "@1B2c3D4e5F6g7H8"; // Must be exactly 16 characters
 
-Encryptor encryptor = new Encryptor(passPhrase, salt, initVector);
+EncodeDecode encryptor = new EncodeDecode(passPhrase, salt, initVector);
 

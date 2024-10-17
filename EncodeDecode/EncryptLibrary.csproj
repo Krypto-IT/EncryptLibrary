@@ -15,11 +15,11 @@
     <PackageIcon>Lock.png</PackageIcon>
     <PackageIconUrl />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>8.0.1</Version>
+    <Version>8.0.2</Version>
     <PackageReleaseNotes>Upgraded to Net 8
 Added Dependency Injection</PackageReleaseNotes>
-    <AssemblyVersion>8.0.0.1</AssemblyVersion>
-    <FileVersion>8.0.0.1</FileVersion>
+    <AssemblyVersion>8.0.0.2</AssemblyVersion>
+    <FileVersion>8.0.0.2</FileVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Title>Encryptor-Decryptor</Title>
 		<RepositoryType>git</RepositoryType>
