@@ -64,4 +64,11 @@ string salt = "YourSaltValue";        // At least 8 characters
 string initVector = "@1B2c3D4e5F6g7H8"; // Must be exactly 16 characters
 
 EncodeDecode encryptor = new EncodeDecode(passPhrase, salt, initVector);
-
+var encrypted = encryptor.Encrypt(text);
+ var decrypted = encryptor.Decrypt(encrypted);
+```
+or using the hardcoded init vector which is less secure.
+```csharp
+var encryptor = new EncodeDecode(PassPhraseString,SaltString);
+var encrypted = encryptor.Encrypt(text);
+ var decrypted = encryptor.Decrypt(encrypted);
