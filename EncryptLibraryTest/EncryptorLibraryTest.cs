@@ -9,14 +9,14 @@ namespace EncryptLibraryTest
         private string _passPhrase;
         private string _salt;
         private string _initVector;
-        private Encryptor _encryptor;
+        private EncodeDecode _encryptor;
         [SetUp]
         public void Setup()
         {
             _passPhrase = "abcdefgh";
             _salt = "12345678";
             _initVector = "!1B2lkj4e5F6g7H8";
-            _encryptor = new Encryptor(_passPhrase, _salt, _initVector);
+            _encryptor = new EncodeDecode(_passPhrase, _salt, _initVector);
         }
 
         [Test]
@@ -41,9 +41,9 @@ namespace EncryptLibraryTest
         public void EncodeDecodeText_ThrowFieldAccessException()
         {
            
-            Assert.Throws<FieldAccessException>(() => new Encryptor("abc", "1234", _initVector));
-            Assert.Throws<FieldAccessException>(() => new Encryptor(_passPhrase, "1234", _initVector));
-            Assert.Throws<FieldAccessException>(() => new Encryptor(_passPhrase, _salt, "!1B2lkj4e5F6g7H"));
+            Assert.Throws<FieldAccessException>(() => new EncodeDecode("abc", "1234", _initVector));
+            Assert.Throws<FieldAccessException>(() => new EncodeDecode(_passPhrase, "1234", _initVector));
+            Assert.Throws<FieldAccessException>(() => new EncodeDecode(_passPhrase, _salt, "!1B2lkj4e5F6g7H"));
 
         }
         [Test]

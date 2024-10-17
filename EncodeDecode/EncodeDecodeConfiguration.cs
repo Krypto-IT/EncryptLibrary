@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EncryptLibrary
 {
-    public class EncryptorConfiguration
+    public class EncodeDecodeConfiguration
     {
-        public const string Name = "EncryptorConfiguration";
+        public const string Name = "EncodeDecodeConfiguration";
         public string PasswordIterations { get; set; }
         public string Salt {  get; set; }
         public string InitVector { get; set; }
