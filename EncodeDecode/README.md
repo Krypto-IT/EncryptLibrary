@@ -29,7 +29,7 @@ In your app settings add the configuration settings:
     "Passphrase": "DoNotUseForPasswords"
   }
 ```
-Register the service
+Register the service in your program.cs file
 ```csharp
     services.Configure<EncryptorConfiguration>(context.Configuration.GetSection(EncryptorConfiguration.Name));
     services.AddScoped<IEncryptor, Encryptor>();
@@ -52,7 +52,7 @@ Inject the service where you need it:
             Console.WriteLine(decrypted);
         }
 ```
-### 2. Initialize the Encryptor
+### 2. Without Dependency Injection You May Initialize the Encryptor
 
 You can initialize the `Encryptor` class with the following parameters:
 
