@@ -72,3 +72,4 @@ or using the hardcoded init vector which is less secure.
 var encryptor = new EncodeDecode(PassPhraseString,SaltString);
 var encrypted = encryptor.Encrypt(text);
  var decrypted = encryptor.Decrypt(encrypted);
+ ```

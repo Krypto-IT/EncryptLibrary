@@ -2,16 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
-using EncryptLibrary;
 using Microsoft.Extensions.Options;
+using EncryptLibrary;
 
 namespace MyConsoleApp
 {
-    /// <summary>
-    /// Open the EncodeDecode project and right click on the EncryptLibrary project and select Pack using VisualStudio 2022
-    /// Import the package to this project. 
-    /// If you are not able to pack you can just reference this project to that project for this code to run.
-    /// </summary>
+   
     class Program
     {
         static void Main(string[] args)
